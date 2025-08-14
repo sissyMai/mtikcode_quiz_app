@@ -101,6 +101,11 @@ const Quiz = () => {
   const [score, setScore] = useState(0);
 
   const handleSelectedOption = (option, index) => {
+    // tính điểm
+    if (option === quizData[currentQuestion].answer) {
+      setScore((prev) => prev + 1);
+    }
+
     setOptionSelected(option);
 
     const newUserAnswers = [...userAnswers];
@@ -146,11 +151,11 @@ const Quiz = () => {
     }
   }, [currentQuestion, userAnswers]);
 
-  useEffect(() => {
-    if (optionSelected === quizData[currentQuestion].answer) {
-      setScore((prev) => prev + 1);
-    }
-  }, [optionSelected]);
+  // useEffect(() => {
+  //   if (optionSelected === quizData[currentQuestion].answer) {
+  //     setScore((prev) => prev + 1);
+  //   }
+  // }, [optionSelected]);
 
   if (isQuizEnded) {
     return (
